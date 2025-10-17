@@ -1,0 +1,268 @@
+.about {
+  background: var(--white);
+  position: relative;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.about-text .section-title {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.about-description {
+  margin-bottom: 2.5rem;
+}
+
+.about-description p {
+  color: var(--dark-gray);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.highlight {
+  padding: 1.5rem;
+  background: var(--light-gray);
+  border-radius: 10px;
+  border-left: 4px solid var(--gold);
+}
+
+.highlight h4 {
+  color: var(--black);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.highlight p {
+  color: var(--dark-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.about-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 2rem 1.5rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--gold);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  display: block;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Values Section */
+.values-section {
+  margin-bottom: 5rem;
+}
+
+.values-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: var(--black);
+  margin-bottom: 3rem;
+  font-weight: bold;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.value-card {
+  background: var(--light-gray);
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.value-card:hover {
+  background: var(--white);
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.value-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.value-title {
+  font-size: 1.3rem;
+  color: var(--black);
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.value-description {
+  color: var(--dark-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Team Section */
+.team-section {
+  background: var(--light-gray);
+  padding: 4rem 3rem;
+  border-radius: 20px;
+  margin-top: 3rem;
+}
+
+.team-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: var(--black);
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.commitment-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.commitment-text p {
+  color: var(--dark-gray);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.commitment-points {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.point:hover {
+  transform: translateY(-3px);
+}
+
+.point-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.point span:last-child {
+  color: var(--dark-gray);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Mobile Styles */
+@media (max-width: 968px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .stats-container {
+    max-width: 100%;
+  }
+  
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .commitment-points {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-highlights {
+    gap: 1rem;
+  }
+  
+  .highlight {
+    padding: 1.2rem;
+  }
+  
+  .stats-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .team-section {
+    padding: 2.5rem 2rem;
+  }
+  
+  .commitment-points {
+    grid-template-columns: 1fr;
+  }
+  
+  .values-title,
+  .team-title {
+    font-size: 1.8rem;
+  }
+}
