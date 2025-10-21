@@ -15,6 +15,13 @@ interface ContactMethodProps {
   description: string;
 }
 
+// Mock submit function
+const submitForm = async (data: FormData): Promise<void> => {
+  console.log('Form submitted:', data);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  // You can replace this with your actual API call
+};
+
 const ContactMethod: React.FC<ContactMethodProps> = ({ icon, title, info, description }) => (
   <div className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:translate-x-2 border-l-4 border-gold">
     <div className="flex items-center justify-center w-15 h-15 bg-gradient-to-br from-gold to-gold-dark rounded-full text-2xl flex-shrink-0">
@@ -37,51 +44,53 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
+  const [errors, setErrors] = useState<Partial<FormData>>({});
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      subject: '',
-      message: ''
-    });
+  const validateForm = (): boolean => {
+    const newErrors: Partial<FormData> = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!formData.name.trim()) newErrors.name = 'Full name is required.';
+    if (!emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address.';
+    if (!formData.subject) newErrors.subject = 'Please select a subject.';
+    if (!formData.message.trim()) newErrors.message = 'Message cannot be empty.';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
+ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (!validateForm()) return; // stop if validation fails
+
+  try {
+    // Simulate API call or replace with actual API request
+    await submitForm(formData);
+
+    // Show alert after successful submission
+    alert('Thank you for your message! We will get back to you soon.');
+
+    // Reset form fields
+    setFormData({ name: '', email: '', company: '', subject: '', message: '' });
+    setErrors({});
+  } catch (error) {
+    console.error('Form submission error:', error);
+    alert('Something went wrong. Please try again later.');
+  }
+};
   const contactInfo: ContactMethodProps[] = [
-    {
-      icon: '📧',
-      title: 'Email Us',
-      info: 'hello@almeone.com',
-      description: 'Send us an email anytime'
-    },
-    {
-      icon: '📞',
-      title: 'Call Us',
-      info: '+1 (555) 123-4567',
-      description: 'Mon-Fri from 8am to 5pm'
-    },
-    {
-      icon: '📍',
-      title: 'Visit Us',
-      info: '123 Business Ave, Suite 100',
-      description: 'New York, NY 10001'
-    },
-    {
-      icon: '💬',
-      title: 'Live Chat',
-      info: 'Available 24/7',
-      description: 'Get instant support'
-    }
+    { icon: '📧', title: 'Email Us', info: 'hello@almeone.com', description: 'Send us an email anytime' },
+    { icon: '📞', title: 'Call Us', info: '+1 (555) 123-4567', description: 'Mon-Fri from 8am to 5pm' },
+    { icon: '📍', title: 'Visit Us', info: '123 Business Ave, Suite 100', description: 'New York, NY 10001' },
+    { icon: '💬', title: 'Live Chat', info: 'Available 24/7', description: 'Get instant support' }
   ];
 
   return (
@@ -130,41 +139,35 @@ const Contact: React.FC = () => {
           <div className="bg-white p-12 rounded-3xl shadow-xl border-2 border-gold">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-black font-bold text-sm mb-2">
-                  Full Name *
-                </label>
+                <label htmlFor="name" className="block text-black font-bold text-sm mb-2">Full Name *</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
                   placeholder="Your full name"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
+                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-black font-bold text-sm mb-2">
-                  Email Address *
-                </label>
+                <label htmlFor="email" className="block text-black font-bold text-sm mb-2">Email Address *</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   placeholder="your.email@example.com"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-black font-bold text-sm mb-2">
-                  Company
-                </label>
+                <label htmlFor="company" className="block text-black font-bold text-sm mb-2">Company</label>
                 <input
                   type="text"
                   id="company"
@@ -174,18 +177,16 @@ const Contact: React.FC = () => {
                   placeholder="Your company name"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
+                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-black font-bold text-sm mb-2">
-                  Subject *
-                </label>
+                <label htmlFor="subject" className="block text-black font-bold text-sm mb-2">Subject *</label>
                 <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  required
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 >
                   <option value="">Select a subject</option>
@@ -196,22 +197,21 @@ const Contact: React.FC = () => {
                   <option value="consulting">Consulting</option>
                   <option value="other">Other</option>
                 </select>
+                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-black font-bold text-sm mb-2">
-                  Message *
-                </label>
+                <label htmlFor="message" className="block text-black font-bold text-sm mb-2">Message *</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                   rows={5}
                   placeholder="Tell us about your project..."
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 resize-vertical min-h-[120px]"
-                ></textarea>
+                />
+                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
 
               <button
@@ -221,29 +221,6 @@ const Contact: React.FC = () => {
                 Send Message
               </button>
             </form>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="bg-black p-16 rounded-3xl text-center text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
-          <div className="relative z-10">
-            <h3 className="text-3xl lg:text-4xl font-bold mb-4">Ready to Transform Your Business?</h3>
-            <p className="text-lg mb-12 opacity-90 max-w-2xl mx-auto">
-              Join hundreds of satisfied clients who have trusted us with their digital transformation journey.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-              {[
-                { number: '500+', label: 'Projects Delivered' },
-                { number: '98%', label: 'Client Satisfaction' },
-                { number: '24/7', label: 'Support Available' }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <span className="block text-3xl lg:text-4xl font-bold text-gold mb-2">{stat.number}</span>
-                  <span className="text-white opacity-90 text-sm">{stat.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
