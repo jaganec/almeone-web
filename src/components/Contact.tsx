@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 interface FormData {
   name: string;
@@ -29,6 +30,7 @@ const ContactMethod: React.FC<ContactMethodProps> = ({ icon, title, info, descri
 );
 
 const Contact: React.FC = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -44,18 +46,40 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      subject: '',
-      message: ''
-    });
-  };
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  e.preventDefault();
+
+  // Run Invisible reCAPTCHA v3 before proceeding
+  if (!executeRecaptcha) {
+    alert('reCAPTCHA not ready. Please try again.');
+    return;
+  }
+
+  const token = await executeRecaptcha('contact_form');
+ 
+  if (!token) {
+    alert('reCAPTCHA failed. Please try again.');
+    return;
+  }
+
+  // OPTIONAL: send to your backend for verification
+  // await fetch('/api/contact', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ ...formData, recaptchaToken: token }),
+  // });
+
+  console.log('Form submitted:', { ...formData, recaptchaToken: token });
+  alert('Thank you for your message! We will get back to you soon.');
+  setFormData({
+    name: '',
+    email: '',
+    company: '',
+    subject: '',
+    message: ''
+  });
+};
+
 
   const contactInfo: ContactMethodProps[] = [
     {
