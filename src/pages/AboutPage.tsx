@@ -1,9 +1,49 @@
 import React from 'react';
 import About from '../components/About';
+import SEO from '../components/SEO';
 
 const AboutPage: React.FC = () => {
   return (
     <div className="about-page">
+      <SEO 
+        title="About Almeone - Our Story, Team & Culture"
+        description="Learn about Almeone's journey, our experienced leadership team, company culture, and commitment to delivering innovative business solutions. Discover our values and achievements."
+        keywords="about almeone, business consultancy, leadership team, company culture, business innovation, corporate values"
+        schema={{
+          '@type': 'AboutPage',
+          '@context': 'https://schema.org',
+          mainEntity: {
+            '@type': 'Organization',
+            name: 'Almeone',
+            description: 'Driving business excellence through innovative solutions, strategic partnerships, and unwavering commitment to success.',
+            numberOfEmployees: '50+',
+            foundingDate: '2010',
+            award: [
+              'ISO 9001:2015 Certification',
+              'ISO 27001 Certification',
+              'AWS Partner',
+              'Microsoft Gold Partner'
+            ],
+            employee: [
+              {
+                '@type': 'Person',
+                name: 'John Smith',
+                jobTitle: 'Chief Executive Officer'
+              },
+              {
+                '@type': 'Person',
+                name: 'Sarah Johnson',
+                jobTitle: 'Chief Technology Officer'
+              },
+              {
+                '@type': 'Person',
+                name: 'Michael Chen',
+                jobTitle: 'Head of Operations'
+              }
+            ]
+          }
+        }}
+      />
       {/* Page Header */}
       <section className="bg-gradient-to-br from-black via-gray-900 to-gold/20 py-20 text-white">
         <div className="max-w-6xl mx-auto px-5 text-center">
