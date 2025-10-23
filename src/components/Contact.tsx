@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
+import LoadingSpinner, { ButtonLoader, useLoading } from './LoadingSpinner';
 
 interface FormData {
   name: string;
@@ -36,6 +37,10 @@ const Contact: React.FC = () => {
     subject: '',
     message: ''
   });
+  
+  const { isLoading, startLoading, stopLoading } = useLoading();
+  const [submitMessage, setSubmitMessage] = useState<string>('');
+  const [submitType, setSubmitType] = useState<'success' | 'error' | ''>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
     setFormData({
@@ -44,9 +49,40 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    
+    // Start loading
+    startLoading();
+    setSubmitMessage('');
+    setSubmitType('');
+    
+    try {
+      // Simulate form submission delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Simulate success/error randomly for demo
+      const isSuccess = Math.random() > 0.2; // 80% success rate
+      
+      if (isSuccess) {
+        setSubmitType('success');
+        setSubmitMessage('Thank you for your message! We\'ll get back to you within 24 hours.');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setSubmitType('error');
+      setSubmitMessage(error instanceof Error ? error.message : 'An error occurred. Please try again.');
+    } finally {
+      stopLoading();
+    }
     alert('Thank you for your message! We will get back to you soon.');
     setFormData({
       name: '',
@@ -216,10 +252,33 @@ const Contact: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full bg-gold text-black px-8 py-4 rounded-lg text-lg font-bold hover:bg-gold-dark transition-all duration-300 transform hover:-translate-y-1"
+                disabled={isLoading}
+                className={`w-full px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 transform ${
+                  isLoading 
+                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
+                    : 'bg-gold text-black hover:bg-gold-dark hover:-translate-y-1'
+                }`}
               >
-                Send Message
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <ButtonLoader size="small" />
+                    Sending...
+                  </span>
+                ) : (
+                  'Send Message'
+                )}
               </button>
+              
+              {/* Submit feedback message */}
+              {submitMessage && (
+                <div className={`mt-4 p-4 rounded-lg ${
+                  submitType === 'success' 
+                    ? 'bg-green-50 border border-green-200 text-green-800' 
+                    : 'bg-red-50 border border-red-200 text-red-800'
+                }`}>
+                  {submitMessage}
+                </div>
+              )}
             </form>
           </div>
         </div>

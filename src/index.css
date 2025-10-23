@@ -64,4 +64,19 @@
     animation: fadeIn 0.8s ease-out 0.8s forwards;
     opacity: 0;
   }
+
+  /* Loading Spinner Animations */
+  @keyframes loadingBar {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loadingBar 1.2s infinite ease-in-out;
+    transform-origin: bottom;
+  }
 }
