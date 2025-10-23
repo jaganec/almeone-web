@@ -1,51 +1,10 @@
 import React from 'react';
 import Services from '../components/Services';
-import SEO from '../components/SEO';
 
 const ServicesPage: React.FC = () => {
   return (
     <div className="services-page">
-      <SEO 
-        title="Services - Almeone Business Solutions"
-        description="Explore Almeone's comprehensive business solutions including technology services, business consulting, and digital transformation. Discover how we can help accelerate your growth."
-        keywords="business services, technology solutions, digital transformation, business consulting, IT services, process optimization"
-        schema={{
-          '@type': 'ItemList',
-          '@context': 'https://schema.org',
-          itemListElement: [
-            {
-              '@type': 'Service',
-              position: 1,
-              name: 'Technology & Software Solutions',
-              description: 'Innovative tech solutions for digital transformation',
-              provider: {
-                '@type': 'Organization',
-                name: 'Almeone'
-              }
-            },
-            {
-              '@type': 'Service',
-              position: 2,
-              name: 'Healthcare & Medical Solutions',
-              description: 'Secure and compliant healthcare technology systems',
-              provider: {
-                '@type': 'Organization',
-                name: 'Almeone'
-              }
-            },
-            {
-              '@type': 'Service',
-              position: 3,
-              name: 'Finance & Banking Solutions',
-              description: 'Robust financial solutions with enhanced security',
-              provider: {
-                '@type': 'Organization',
-                name: 'Almeone'
-              }
-            }
-          ]
-        }}
-      />
+      
       {/* Page Header */}
       <section className="bg-gradient-to-br from-black via-gray-900 to-gold/20 py-20 text-white">
         <div className="max-w-6xl mx-auto px-5 text-center">

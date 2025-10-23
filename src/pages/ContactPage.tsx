@@ -1,64 +1,10 @@
 import React from 'react';
 import Contact from '../components/Contact';
-import SEO from '../components/SEO';
 
 const ContactPage: React.FC = () => {
   return (
     <div className="contact-page">
-      <SEO 
-        title="Contact Almeone - Get in Touch With Our Team"
-        description="Connect with Almeone's expert team for innovative business solutions. Find our global office locations and start your transformation journey today."
-        keywords="contact almeone, business consultation, global offices, project inquiry, business transformation, customer support"
-        schema={{
-          '@type': 'ContactPage',
-          '@context': 'https://schema.org',
-          mainEntity: {
-            '@type': 'Organization',
-            name: 'Almeone',
-            location: [
-              {
-                '@type': 'Place',
-                name: 'New York Office',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '123 Business Ave, Suite 500',
-                  addressLocality: 'New York',
-                  addressRegion: 'NY',
-                  postalCode: '10001',
-                  addressCountry: 'US'
-                },
-                telephone: '+1 (555) 123-4567',
-                email: 'ny@almeone.com'
-              },
-              {
-                '@type': 'Place',
-                name: 'London Office',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '45 Corporate Street',
-                  addressLocality: 'London',
-                  postalCode: 'EC2M 4NS',
-                  addressCountry: 'GB'
-                },
-                telephone: '+44 20 1234 5678',
-                email: 'london@almeone.com'
-              },
-              {
-                '@type': 'Place',
-                name: 'Dubai Office',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: 'Business Bay Tower, Level 25',
-                  addressLocality: 'Dubai',
-                  addressCountry: 'AE'
-                },
-                telephone: '+971 4 123 4567',
-                email: 'dubai@almeone.com'
-              }
-            ]
-          }
-        }}
-      />
+      
       {/* Page Header */}
       <section className="bg-gradient-to-br from-black via-gray-900 to-gold/20 py-20 text-white">
         <div className="max-w-6xl mx-auto px-5 text-center">
