@@ -60,35 +60,37 @@ const Contact: React.FC = () => {
     setSubmitType('');
 
     try {
-      // Run Invisible reCAPTCHA v3 before proceeding
-      if (!executeRecaptcha) {
-        throw new Error('reCAPTCHA not ready. Please try again.');
+      // Get reCAPTCHA token if available
+      let recaptchaToken = '';
+      if (executeRecaptcha) {
+        try {
+          recaptchaToken = await executeRecaptcha('contact_form');
+        } catch (recaptchaError) {
+          console.warn('reCAPTCHA failed, proceeding without token:', recaptchaError);
+        }
       }
 
-      const token = await executeRecaptcha('contact_form');
-     
-      if (!token) {
-        throw new Error('reCAPTCHA failed. Please try again.');
-      }
+      // Submit to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          subject: formData.subject,
+          message: formData.message,
+          recaptchaToken
+        }),
+      });
 
-      // Simulate form submission delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // OPTIONAL: send to your backend for verification
-      // await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ ...formData, recaptchaToken: token }),
-      // });
+      const result = await response.json();
 
-      console.log('Form submitted:', { ...formData, recaptchaToken: token });
-      
-      // Simulate success/error randomly for demo
-      const isSuccess = Math.random() > 0.2; // 80% success rate
-      
-      if (isSuccess) {
+      if (result.success) {
         setSubmitType('success');
-        setSubmitMessage('Thank you for your message! We\'ll get back to you within 24 hours.');
+        setSubmitMessage(result.message);
         setFormData({
           name: '',
           email: '',
@@ -97,11 +99,15 @@ const Contact: React.FC = () => {
           message: ''
         });
       } else {
-        throw new Error('Failed to send message. Please try again.');
+        throw new Error(result.message);
       }
     } catch (error) {
       setSubmitType('error');
-      setSubmitMessage(error instanceof Error ? error.message : 'An error occurred. Please try again.');
+      if (error instanceof Error) {
+        setSubmitMessage(error.message);
+      } else {
+        setSubmitMessage('Network error. Please check your connection and try again.');
+      }
     } finally {
       stopLoading();
     }

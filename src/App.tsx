@@ -11,29 +11,37 @@ import LoadingDemoPage from './pages/LoadingDemoPage';
 import { LoadingProvider } from './contexts/LoadingContext';
 
 const App: React.FC = () => {
-  return (
+  const recaptchaKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
+  
+  const AppContent = () => (
+    <LoadingProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/loading-demo" element={<LoadingDemoPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </LoadingProvider>
+  );
+
+  return recaptchaKey ? (
     <GoogleReCaptchaProvider
-      reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY as string}
+      reCaptchaKey={recaptchaKey}
       scriptProps={{ async: true, defer: true }}
     >
-      <LoadingProvider>
-        <Router>
-          <div className="App">
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/services" element={<ServicesPage />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/loading-demo" element={<LoadingDemoPage />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-      </LoadingProvider>
+      <AppContent />
     </GoogleReCaptchaProvider>
+  ) : (
+    <AppContent />
   );
 };
 

@@ -26,6 +26,9 @@
     "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
     "type-check": "tsc --noEmit",
+    "api:start": "cd api && npm start",
+    "api:install": "cd api && npm install",
+    "dev": "concurrently \"npm start\" \"npm run api:start\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
