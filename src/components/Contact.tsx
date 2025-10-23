@@ -1,6 +1,6 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
-import LoadingSpinner, { ButtonLoader, useLoading } from './LoadingSpinner';
+import { ButtonLoader, useLoading } from './LoadingSpinner';
 
 interface FormData {
   name: string;
@@ -163,13 +163,20 @@ const Contact: React.FC = () => {
             <div>
               <h4 className="text-xl font-bold text-black mb-4">Follow Us</h4>
               <div className="flex flex-wrap gap-4">
-                {['LinkedIn', 'Twitter', 'GitHub', 'Dribbble'].map((social, index) => (
+                {[
+                  { name: 'LinkedIn', url: 'https://linkedin.com/company/almeone' },
+                  { name: 'Twitter', url: 'https://twitter.com/almeone' },
+                  { name: 'GitHub', url: 'https://github.com/jaganec/almeone-web' },
+                  { name: 'Dribbble', url: 'https://dribbble.com/almeone' }
+                ].map((social, index) => (
                   <a
                     key={index}
-                    href="#"
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-6 py-3 bg-white text-black border-2 border-gold rounded-lg font-medium hover:bg-gold hover:text-black transition-all duration-300 transform hover:-translate-y-1"
                   >
-                    {social}
+                    {social.name}
                   </a>
                 ))}
               </div>

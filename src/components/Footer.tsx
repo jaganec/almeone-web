@@ -121,14 +121,21 @@ const Footer: React.FC = () => {
         <div className="py-12 border-b border-white/10">
           <div className="flex justify-center">
             <div className="flex gap-6">
-              {['LinkedIn', 'Twitter', 'GitHub', 'Dribbble'].map((social, index) => (
+              {[
+                { name: 'LinkedIn', url: 'https://linkedin.com/company/almeone' },
+                { name: 'Twitter', url: 'https://twitter.com/almeone' },
+                { name: 'GitHub', url: 'https://github.com/jaganec/almeone-web' },
+                { name: 'Dribbble', url: 'https://dribbble.com/almeone' }
+              ].map((social, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center px-6 py-3 bg-white/10 text-white/80 rounded-lg border border-white/20 hover:bg-gold hover:text-black hover:border-gold transition-all duration-300 transform hover:-translate-y-1 text-sm font-medium"
-                  aria-label={social}
+                  aria-label={social.name}
                 >
-                  {social}
+                  {social.name}
                 </a>
               ))}
             </div>
@@ -140,13 +147,17 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/60 text-sm">
             <p>&copy; {currentYear} Almeone. All rights reserved.</p>
             <div className="flex gap-8">
-              {['Privacy Policy', 'Terms of Service', 'Cookies'].map((link, index) => (
+              {[
+                { name: 'Privacy Policy', url: '/privacy' },
+                { name: 'Terms of Service', url: '/terms' },
+                { name: 'Cookies', url: '/cookies' }
+              ].map((link, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={link.url}
                   className="hover:text-gold transition-colors duration-300"
                 >
-                  {link}
+                  {link.name}
                 </a>
               ))}
             </div>
