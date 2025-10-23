@@ -1,10 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroCarousel from '../components/HeroCarousel';
+import SEO from '../components/SEO';
 
 const HomePage: React.FC = () => {
   return (
     <div className="home-page">
+      <SEO 
+        title="Almeone - Innovative Business Solutions"
+        description="Discover innovative business solutions that drive growth, efficiency, and success for companies across industries. Partner with Almeone for excellence in business transformation."
+        keywords="business solutions, innovation, digital transformation, business efficiency, consulting services"
+        schema={{
+          '@type': 'WebPage',
+          name: 'Almeone - Innovative Business Solutions',
+          description: 'Discover innovative business solutions that drive growth, efficiency, and success for companies across industries.',
+          provider: {
+            '@type': 'Organization',
+            name: 'Almeone',
+          },
+          offers: {
+            '@type': 'AggregateOffer',
+            offerCount: '3',
+            itemListElement: [
+              {
+                '@type': 'Offer',
+                name: 'Excellence',
+                description: 'Committed to delivering the highest quality solutions with attention to every detail'
+              },
+              {
+                '@type': 'Offer',
+                name: 'Innovation',
+                description: 'Leveraging cutting-edge technology and creative approaches to solve complex challenges'
+              },
+              {
+                '@type': 'Offer',
+                name: 'Partnership',
+                description: 'Building lasting relationships through trust, transparency, and collaborative success'
+              }
+            ]
+          }
+        }}
+      />
       <HeroCarousel />
       
       {/* Quick Overview Section */}

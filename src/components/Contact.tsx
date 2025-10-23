@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import LoadingSpinner, { ButtonLoader, useLoading } from './LoadingSpinner';
 
 interface FormData {
@@ -30,6 +31,7 @@ const ContactMethod: React.FC<ContactMethodProps> = ({ icon, title, info, descri
 );
 
 const Contact: React.FC = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -56,10 +58,30 @@ const Contact: React.FC = () => {
     startLoading();
     setSubmitMessage('');
     setSubmitType('');
-    
+
     try {
+      // Run Invisible reCAPTCHA v3 before proceeding
+      if (!executeRecaptcha) {
+        throw new Error('reCAPTCHA not ready. Please try again.');
+      }
+
+      const token = await executeRecaptcha('contact_form');
+     
+      if (!token) {
+        throw new Error('reCAPTCHA failed. Please try again.');
+      }
+
       // Simulate form submission delay
       await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // OPTIONAL: send to your backend for verification
+      // await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ ...formData, recaptchaToken: token }),
+      // });
+
+      console.log('Form submitted:', { ...formData, recaptchaToken: token });
       
       // Simulate success/error randomly for demo
       const isSuccess = Math.random() > 0.2; // 80% success rate
@@ -83,14 +105,6 @@ const Contact: React.FC = () => {
     } finally {
       stopLoading();
     }
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      subject: '',
-      message: ''
-    });
   };
 
   const contactInfo: ContactMethodProps[] = [
