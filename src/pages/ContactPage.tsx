@@ -6,56 +6,54 @@ const ContactPage: React.FC = () => {
   return (
     <div className="contact-page">
       <SEO 
-        title="Contact Almeone - Get in Touch With Our Team"
-        description="Connect with Almeone's expert team for innovative business solutions. Find our global office locations and start your transformation journey today."
-        keywords="contact almeone, business consultation, global offices, project inquiry, business transformation, customer support"
+        title="Contact AlmeOne - Qatar-Based AI & Warehouse Solutions"
+        description="Connect with AlmeOne's expert team for AI-driven solutions and warehouse automation. Qatar headquarters with global reach across GCC and international markets."
+        keywords="contact almeone, qatar ai solutions, warehouse automation consultation, doha technology services, GCC AI solutions, international project inquiry"
         schema={{
           '@type': 'ContactPage',
           '@context': 'https://schema.org',
           mainEntity: {
             '@type': 'Organization',
-            name: 'Almeone',
+            name: 'AlmeOne',
+            description: 'AI-driven solutions and warehouse automation expertise from Qatar with global reach',
+            address: {
+              '@type': 'PostalAddress',
+              addressCountry: 'QA'
+            },
             location: [
               {
                 '@type': 'Place',
-                name: 'New York Office',
+                name: 'Doha Headquarters',
                 address: {
                   '@type': 'PostalAddress',
-                  streetAddress: '123 Business Ave, Suite 500',
-                  addressLocality: 'New York',
-                  addressRegion: 'NY',
-                  postalCode: '10001',
-                  addressCountry: 'US'
+                  streetAddress: 'West Bay Business District',
+                  addressLocality: 'Doha',
+                  addressCountry: 'QA'
                 },
-                telephone: '+1 (555) 123-4567',
-                email: 'ny@almeone.com'
+                telephone: '+974 4000 1234',
+                email: 'doha@almeone.com'
               },
               {
                 '@type': 'Place',
-                name: 'London Office',
+                name: 'Regional Operations',
                 address: {
                   '@type': 'PostalAddress',
-                  streetAddress: '45 Corporate Street',
-                  addressLocality: 'London',
-                  postalCode: 'EC2M 4NS',
-                  addressCountry: 'GB'
-                },
-                telephone: '+44 20 1234 5678',
-                email: 'london@almeone.com'
-              },
-              {
-                '@type': 'Place',
-                name: 'Dubai Office',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: 'Business Bay Tower, Level 25',
-                  addressLocality: 'Dubai',
                   addressCountry: 'AE'
                 },
                 telephone: '+971 4 123 4567',
-                email: 'dubai@almeone.com'
+                email: 'mena@almeone.com'
               }
-            ]
+            ],
+            areaServed: ['QA', 'AE', 'SA', 'KW', 'BH', 'OM', 'US', 'GB', 'DE'],
+            serviceArea: {
+              '@type': 'GeoCircle',
+              geoMidpoint: {
+                '@type': 'GeoCoordinates',
+                latitude: 25.2854,
+                longitude: 51.5310
+              },
+              geoRadius: 'Global'
+            }
           }
         }}
       />
@@ -63,11 +61,17 @@ const ContactPage: React.FC = () => {
       <section className="bg-gradient-to-br from-black via-gray-900 to-gold/20 py-20 text-white">
         <div className="max-w-6xl mx-auto px-5 text-center">
           <h1 className="text-5xl lg:text-6xl font-bold mb-6">
-            Contact <span className="text-gold">Us</span>
+            Connect with <span className="text-gold">AlmeOne</span>
           </h1>
-          <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto">
-            Ready to transform your business? Let's start the conversation and explore how we can help you achieve your goals.
+          <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto mb-8">
+            Ready to transform your operations with AI-driven solutions? Our Qatar-based team delivers global expertise 
+            in warehouse automation and intelligent technology solutions.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <span className="bg-gold/20 text-gold px-4 py-2 rounded-full">🇶🇦 Qatar Headquarters</span>
+            <span className="bg-gold/20 text-gold px-4 py-2 rounded-full">🌍 Global Delivery</span>
+            <span className="bg-gold/20 text-gold px-4 py-2 rounded-full">24/7 Support</span>
+          </div>
         </div>
       </section>
 
@@ -79,48 +83,55 @@ const ContactPage: React.FC = () => {
         <div className="max-w-6xl mx-auto px-5">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-black">
-              Our <span className="text-gold">Locations</span>
+              Our <span className="text-gold">Global Presence</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              With offices around the globe, we provide local expertise with international standards of excellence.
+              Headquartered in Qatar with global reach. We deliver local expertise with international standards 
+              across GCC, MENA, and worldwide markets.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                city: 'New York',
-                country: 'United States',
-                address: '123 Business Ave, Suite 500',
-                postal: 'New York, NY 10001',
-                phone: '+1 (555) 123-4567',
-                email: 'ny@almeone.com',
-                flag: '🇺🇸'
-              },
-              {
-                city: 'London',
-                country: 'United Kingdom',
-                address: '45 Corporate Street',
-                postal: 'London EC2M 4NS',
-                phone: '+44 20 1234 5678',
-                email: 'london@almeone.com',
-                flag: '🇬🇧'
+                city: 'Doha',
+                country: 'Qatar (Headquarters)',
+                address: 'West Bay Business District',
+                postal: 'Doha, Qatar',
+                phone: '+974 4000 1234',
+                email: 'doha@almeone.com',
+                flag: '��',
+                isHQ: true
               },
               {
                 city: 'Dubai',
-                country: 'United Arab Emirates',
-                address: 'Business Bay Tower, Level 25',
+                country: 'UAE (Regional Hub)',
+                address: 'Business Bay Technology Center',
                 postal: 'Dubai, UAE',
                 phone: '+971 4 123 4567',
-                email: 'dubai@almeone.com',
-                flag: '🇦🇪'
+                email: 'mena@almeone.com',
+                flag: '��',
+                isHQ: false
+              },
+              {
+                city: 'Global',
+                country: 'International Projects',
+                address: 'Remote Delivery Worldwide',
+                postal: 'USA, Europe, Asia-Pacific',
+                phone: '+974 4000 1234',
+                email: 'global@almeone.com',
+                flag: '�',
+                isHQ: false
               }
             ].map((office, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <div key={index} className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${office.isHQ ? 'ring-2 ring-gold ring-opacity-50' : ''}`}>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-3xl">{office.flag}</span>
                   <div>
-                    <h3 className="text-2xl font-bold text-black">{office.city}</h3>
+                    <h3 className="text-2xl font-bold text-black flex items-center gap-2">
+                      {office.city}
+                      {office.isHQ && <span className="text-gold text-sm font-normal px-2 py-1 bg-gold/10 rounded-full">HQ</span>}
+                    </h3>
                     <p className="text-gray-600">{office.country}</p>
                   </div>
                 </div>
@@ -176,24 +187,28 @@ const ContactPage: React.FC = () => {
           <div className="space-y-6">
             {[
               {
-                question: 'How long does a typical project take?',
-                answer: 'Project timelines vary based on scope and complexity. Most projects range from 4-12 weeks. We provide detailed timelines during our initial consultation.'
+                question: 'How quickly can AlmeOne implement warehouse automation solutions?',
+                answer: 'Implementation timelines vary by complexity, but our Container Damage Inspection System can be deployed in 2-4 weeks, while comprehensive warehouse automation typically takes 6-12 weeks with our proven methodology.'
               },
               {
-                question: 'Do you provide ongoing support after project completion?',
-                answer: 'Yes, we offer comprehensive support packages including maintenance, updates, and technical assistance to ensure your continued success.'
+                question: 'Do you provide 24/7 support for AI and warehouse systems?',
+                answer: 'Yes, we offer comprehensive 24/7 managed support including system monitoring, proactive maintenance, performance optimization, and immediate technical assistance to ensure zero downtime.'
               },
               {
-                question: 'What industries do you specialize in?',
-                answer: 'We work across multiple industries including technology, healthcare, finance, retail, manufacturing, and education, adapting our solutions to each sector\'s specific needs.'
+                question: 'What industries benefit most from AlmeOne solutions?',
+                answer: 'We specialize in warehouse & logistics, supply chain management, manufacturing operations, and any industry requiring AI-driven process automation and intelligent data capture systems.'
               },
               {
-                question: 'How do you ensure project quality?',
-                answer: 'We follow rigorous quality assurance processes, including regular reviews, testing phases, and client feedback sessions throughout the project lifecycle.'
+                question: 'How accurate is your Container Damage Inspection System?',
+                answer: 'Our AI-powered system achieves 99.7% detection accuracy with 3x faster inspection speed compared to manual processes, including automatic documentation and severity scoring.'
               },
               {
-                question: 'Can you work with our existing systems?',
-                answer: 'Absolutely. We specialize in integrating new solutions with existing infrastructure, ensuring minimal disruption to your current operations.'
+                question: 'Can AlmeOne integrate with our existing warehouse management systems?',
+                answer: 'Absolutely. Our solutions are designed for seamless integration with existing WMS, ERP, and logistics systems through API-first architecture, ensuring minimal disruption to current operations.'
+              },
+              {
+                question: 'What is the ROI for AlmeOne warehouse automation solutions?',
+                answer: 'Clients typically see 85% error reduction, 60% processing speed increase, and 40% labor cost savings with an average ROI period of 12 months for comprehensive automation implementations.'
               }
             ].map((faq, index) => (
               <div key={index} className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl shadow-lg">
@@ -209,10 +224,11 @@ const ContactPage: React.FC = () => {
       <section className="py-20 bg-gradient-to-r from-black via-gray-900 to-black">
         <div className="max-w-4xl mx-auto px-5 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            Ready to Get <span className="text-gold">Started</span>?
+            Ready to Transform Your <span className="text-gold">Operations</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Take the first step towards transforming your business. Our team is ready to discuss your project and provide a customized solution.
+            Connect with AlmeOne's Qatar-based experts for AI-driven solutions and warehouse automation. 
+            Let's discuss how our intelligent technology can revolutionize your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
@@ -223,13 +239,13 @@ const ContactPage: React.FC = () => {
                 document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              Start Your Project
+              Schedule Consultation
             </a>
             <a 
-              href="tel:+1-555-123-4567" 
+              href="tel:+974-4000-1234" 
               className="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-black px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300"
             >
-              Call Us Now
+              Call Qatar Office
             </a>
           </div>
         </div>

@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import WarehousePage from './pages/WarehousePage';
 import LoadingDemoPage from './pages/LoadingDemoPage';
 import { LoadingProvider } from './contexts/LoadingContext';
 
@@ -22,6 +23,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/services" element={<ServicesPage />} />
+              <Route path="/warehouse" element={<WarehousePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/loading-demo" element={<LoadingDemoPage />} />

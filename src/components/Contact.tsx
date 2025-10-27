@@ -118,45 +118,48 @@ const Contact: React.FC = () => {
       icon: '📧',
       title: 'Email Us',
       info: 'hello@almeone.com',
-      description: 'Send us an email anytime'
+      description: 'Get AI solutions consultation anytime'
     },
     {
       icon: '📞',
-      title: 'Call Us',
-      info: '+1 (555) 123-4567',
-      description: 'Mon-Fri from 8am to 5pm'
+      title: 'Call Qatar HQ',
+      info: '+974 4000 1234',
+      description: 'Sun-Thu from 8am to 6pm GST'
     },
     {
       icon: '📍',
-      title: 'Visit Us',
-      info: '123 Business Ave, Suite 100',
-      description: 'New York, NY 10001'
+      title: 'Visit Qatar Office',
+      info: 'West Bay Business District',
+      description: 'Doha, Qatar - Headquarters'
     },
     {
-      icon: '💬',
-      title: 'Live Chat',
-      info: 'Available 24/7',
-      description: 'Get instant support'
+      icon: '🤖',
+      title: 'AI Solutions',
+      info: 'Warehouse Automation',
+      description: '24/7 intelligent support systems'
     }
   ];
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 to-white relative">
       <div className="max-w-6xl mx-auto px-5">
-        <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-black">Get In Touch</h2>
-        <p className="text-center text-lg text-gray-600 mb-16 max-w-2xl mx-auto">
-          Ready to start your next project? Let's discuss how we can help bring your ideas to life.
+        <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-black">
+          Connect with <span className="text-gold">AlmeOne</span>
+        </h2>
+        <p className="text-center text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
+          Ready to transform your warehouse operations with AI-driven solutions? Let's discuss how our Qatar-based expertise 
+          can deliver intelligent automation and measurable results for your business.
         </p>
 
         <div className="grid lg:grid-cols-2 gap-16 mb-16">
           {/* Contact Information */}
           <div className="space-y-10">
             <div>
-              <h3 className="text-3xl font-bold text-black mb-4">Let's Start a Conversation</h3>
+              <h3 className="text-3xl font-bold text-black mb-4">Let's Transform Your Operations</h3>
               <p className="text-gray-600 text-lg leading-relaxed">
-                We'd love to hear about your project and discuss how our expertise 
-                can help you achieve your goals. Reach out to us using any of the 
-                methods below, and we'll get back to you within 24 hours.
+                Ready to experience AlmeOne's AI-driven warehouse solutions? Our Qatar-based experts understand 
+                your operational challenges and deliver right-fit, ready-to-scale solutions. Contact us using 
+                any method below, and we'll respond within 24 hours with intelligent insights.
               </p>
             </div>
 
