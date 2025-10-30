@@ -122,26 +122,7 @@ const Contact: React.FC = () => {
     }
   };
 
- const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-
-  if (!validateForm()) return; // stop if validation fails
-
-  try {
-    // Simulate API call or replace with actual API request
-    await submitForm(formData);
-
-    // Show alert after successful submission
-    alert('Thank you for your message! We will get back to you soon.');
-
-    // Reset form fields
-    setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-    setErrors({});
-  } catch (error) {
-    console.error('Form submission error:', error);
-    alert('Something went wrong. Please try again later.');
-  }
-};
+// Duplicate handleSubmit removed; using the earlier handleSubmit definition with reCAPTCHA and API submission.
   const contactInfo: ContactMethodProps[] = [
     {
       icon: '📧',
