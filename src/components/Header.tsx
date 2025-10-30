@@ -50,6 +50,17 @@ const Header: React.FC = () => {
               </li>
               <li>
                 <Link 
+                  to="/warehouse" 
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`block py-2 md:py-0 font-medium hover:text-gold transition-colors duration-300 relative hover:after:absolute hover:after:bottom-[-5px] hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-gold border-b border-gray-200 md:border-b-0 ${
+                    isActiveRoute('/warehouse') ? 'text-gold after:absolute after:bottom-[-5px] after:left-0 after:right-0 after:h-0.5 after:bg-gold' : 'text-black'
+                  }`}
+                >
+                  Warehouse
+                </Link>
+              </li>
+              <li>
+                <Link 
                   to="/about" 
                   onClick={() => setIsMenuOpen(false)}
                   className={`block py-2 md:py-0 font-medium hover:text-gold transition-colors duration-300 relative hover:after:absolute hover:after:bottom-[-5px] hover:after:left-0 hover:after:right-0 hover:after:h-0.5 hover:after:bg-gold border-b border-gray-200 md:border-b-0 ${

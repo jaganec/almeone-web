@@ -29,45 +29,45 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
   const slides: Slide[] = [
     {
       id: 1,
-      title: "Welcome to Almeone",
-      subtitle: "Your Trusted Business Partner",
-      description: "Empowering businesses with innovative solutions and exceptional service quality that drives sustainable growth.",
+      title: "From Vision to Execution",
+      subtitle: "One Partner, One AlmeOne",
+      description: "AlmeOne is a trusted technology and innovation partner based in Qatar, with global reach spanning the US, Canada, and India. We specialize in AI-driven solutions and digital transformation.",
       primaryCTA: {
-        text: "Get Started",
-        action: "/contact"
+        text: "Explore Our Solutions",
+        action: "/services"
       },
       secondaryCTA: {
-        text: "Learn More",
-        action: "/about"
+        text: "Talk to an Expert",
+        action: "/contact"
       },
       backgroundClass: "bg-gradient-to-br from-black via-gray-900 to-gold/20"
     },
     {
       id: 2,
-      title: "Premium Business Solutions",
-      subtitle: "Driving Growth & Innovation",
-      description: "Comprehensive services designed to optimize your operations and accelerate your business transformation journey.",
+      title: "Unified Intelligence",
+      subtitle: "for a Digital World",
+      description: "Built on the principle of unity, AlmeOne delivers precision-engineered outcomes that empower organizations to adapt, evolve, and lead with AI-powered automation.",
       primaryCTA: {
-        text: "View Services",
+        text: "AI Solutions",
         action: "/services"
       },
       secondaryCTA: {
-        text: "Get Quote",
-        action: "/contact"
+        text: "Learn More",
+        action: "/about"
       },
       backgroundClass: "bg-gradient-to-br from-gold/10 via-black to-gray-900"
     },
     {
       id: 3,
-      title: "Proven Track Record",
-      subtitle: "500+ Successful Projects",
-      description: "Join hundreds of satisfied clients who have transformed their businesses with our expertise and dedication.",
+      title: "Transforming Operations",
+      subtitle: "with Smart AI and Automation",
+      description: "From warehouse automation to container damage inspection, we bring clarity, capability and cultural fluency to every solution that drives measurable business impact.",
       primaryCTA: {
-        text: "Case Studies",
-        action: "/about"
+        text: "Warehouse Solutions",
+        action: "/services"
       },
       secondaryCTA: {
-        text: "Contact Us",
+        text: "Get Started",
         action: "/contact"
       },
       backgroundClass: "bg-gradient-to-br from-gray-900 via-black to-gold/15"

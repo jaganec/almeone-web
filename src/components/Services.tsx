@@ -29,10 +29,10 @@ const ServiceCard: React.FC<ServiceProps> = ({ icon, title, description, feature
     
     <div className="mt-auto">
       <a 
-        href="#contact" 
+        href={title === 'Warehouse Solutions' ? '/warehouse' : '#contact'}
         className="text-gold font-bold relative hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-gold transition-all duration-300"
       >
-        Learn More
+        {title === 'Warehouse Solutions' ? 'Explore Solutions' : 'Learn More'}
       </a>
     </div>
   </div>
@@ -41,40 +41,40 @@ const ServiceCard: React.FC<ServiceProps> = ({ icon, title, description, feature
 const Services: React.FC = () => {
   const services: ServiceProps[] = [
     {
-      icon: '💻',
-      title: 'Web Development',
-      description: 'Custom web applications built with modern technologies and best practices for optimal performance.',
-      features: ['React/Vue/Angular', 'Node.js Backend', 'Database Design', 'API Development']
+      icon: '🤖',
+      title: 'AI Consultation & Strategy',
+      description: 'Tailored AI strategies from process automation to predictive analytics designed to create measurable impact.',
+      features: ['Process Automation Design', 'Predictive Analytics Implementation', 'AI Readiness Assessment', 'Custom AI Model Development']
     },
     {
-      icon: '📱',
-      title: 'Mobile Solutions',
-      description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
-      features: ['iOS & Android', 'React Native', 'Flutter', 'App Store Optimization']
+      icon: '�',
+      title: 'AI Integration Services',
+      description: 'Seamless integration of AI capabilities into existing systems and workflows for enhanced efficiency.',
+      features: ['Legacy System AI Integration', 'API-First AI Solutions', 'Workflow Automation', 'Data Pipeline Optimization']
     },
     {
-      icon: '☁️',
-      title: 'Cloud Services',
-      description: 'Scalable cloud infrastructure and deployment solutions for modern businesses.',
-      features: ['AWS/Azure/GCP', 'DevOps', 'Microservices', 'Container Orchestration']
+      icon: '🏭',
+      title: 'Warehouse Solutions',
+      description: 'Advanced warehouse automation including container damage inspection and automated data capture systems.',
+      features: ['Container Damage Inspection System', 'Automated Data Capture', 'Dimensioning & Warehouse Automation', 'Real-time Inventory Tracking']
     },
     {
-      icon: '🎨',
-      title: 'UI/UX Design',
-      description: 'Beautiful and intuitive designs that enhance user engagement and satisfaction.',
-      features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems']
+      icon: '⚡',
+      title: 'Next-Gen Development',
+      description: 'Modern web applications, mobile solutions, and cloud-native architectures built with cutting-edge technologies.',
+      features: ['React/Node.js Development', 'Cloud-Native Architecture', 'Mobile App Development', 'API-First Design']
     },
     {
-      icon: '🔧',
-      title: 'System Integration',
-      description: 'Seamless integration of existing systems with new technologies and platforms.',
-      features: ['API Integration', 'Data Migration', 'Legacy Modernization', 'Third-party Services']
+      icon: '�️',
+      title: 'Managed IT Support',
+      description: '24/7 managed support ensuring your systems perform at peak efficiency with continuous monitoring.',
+      features: ['24/7 System Monitoring', 'Proactive Maintenance', 'Security Management', 'Performance Optimization']
     },
     {
       icon: '🚀',
       title: 'Digital Transformation',
-      description: 'Complete digital transformation strategies to modernize your business operations.',
-      features: ['Process Automation', 'Digital Strategy', 'Technology Consulting', 'Change Management']
+      description: 'Complete digital infrastructure and strategic IT services from legacy modernization to cloud migration.',
+      features: ['Legacy System Modernization', 'Cloud Migration Strategy', 'Process Digitization', 'Technology Roadmap Planning']
     }
   ];
 
@@ -83,9 +83,11 @@ const Services: React.FC = () => {
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent"></div>
       
       <div className="max-w-6xl mx-auto px-5">
-        <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-black">Our Services</h2>
-        <p className="text-center text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
-          Comprehensive technology solutions designed to drive your business forward
+        <h2 className="text-center text-4xl lg:text-5xl font-bold mb-5 text-black">
+          <span className="text-gold">AlmeOne</span> Solutions
+        </h2>
+        <p className="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+          AI-driven solutions and warehouse automation expertise from Qatar's leading technology innovators
         </p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
