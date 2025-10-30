@@ -1,0 +1,32 @@
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Azure Functions artifacts
+bin/
+obj/
+
+# Environment variables
+.env
+.env.local
+.env.production
+local.settings.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Temporary folders
+tmp/
+temp/
