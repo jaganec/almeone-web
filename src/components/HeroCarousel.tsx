@@ -245,7 +245,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
       `}</style>
       
       <div 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
@@ -501,20 +501,20 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Main content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto py-8 sm:py-12 md:py-16">
         {/* Slide content with animation */}
         <div className="transition-all duration-700 ease-in-out transform">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-fade-in">
             <span className="bg-gradient-to-r from-gold via-yellow-400 to-gold bg-clip-text text-transparent">
               {slides[currentSlide].title}
             </span>
           </h1>
           
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-6 text-gray-200 animate-fade-in-delay-1">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-4 sm:mb-6 text-gray-200 animate-fade-in-delay-1">
             {slides[currentSlide].subtitle}
           </h2>
           
-          <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay-2">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay-2">
             {slides[currentSlide].description}
           </p>
           
@@ -537,18 +537,18 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
         </div>
 
         {/* Statistics */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-delay-4">
+        <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 animate-fade-in-delay-4">
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-gold mb-2">500+</div>
-            <div className="text-gray-300">Happy Clients</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">500+</div>
+            <div className="text-gray-300 text-sm sm:text-base">Happy Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-gold mb-2">1000+</div>
-            <div className="text-gray-300">Projects Completed</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">1000+</div>
+            <div className="text-gray-300 text-sm sm:text-base">Projects Completed</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-gold mb-2">15+</div>
-            <div className="text-gray-300">Years Experience</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">15+</div>
+            <div className="text-gray-300 text-sm sm:text-base">Years Experience</div>
           </div>
         </div>
       </div>
@@ -556,31 +556,31 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
       {/* Navigation arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
         aria-label="Previous slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
         aria-label="Next slide"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
 
       {/* Dot indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 touch-manipulation ${
               index === currentSlide 
                 ? 'bg-gold scale-125' 
                 : 'bg-white/50 hover:bg-white/70'
@@ -591,7 +591,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
       </div>
 
       {/* Slide counter */}
-      <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-20">
+      <div className="absolute top-20 sm:top-4 right-2 sm:right-4 bg-black/50 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm z-20">
         {currentSlide + 1} / {slides.length}
       </div>
     </div>
