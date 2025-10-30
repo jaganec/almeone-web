@@ -17,13 +17,6 @@ interface ContactMethodProps {
   description: string;
 }
 
-// Mock submit function
-const submitForm = async (data: FormData): Promise<void> => {
-  console.log('Form submitted:', data);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  // You can replace this with your actual API call
-};
-
 const ContactMethod: React.FC<ContactMethodProps> = ({ icon, title, info, description }) => (
   <div className="flex items-start gap-4 p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:translate-x-2 border-l-4 border-gold">
     <div className="flex items-center justify-center w-15 h-15 bg-gradient-to-br from-gold to-gold-dark rounded-full text-2xl flex-shrink-0">
@@ -50,8 +43,6 @@ const Contact: React.FC = () => {
   const { isLoading, startLoading, stopLoading } = useLoading();
   const [submitMessage, setSubmitMessage] = useState<string>('');
   const [submitType, setSubmitType] = useState<'success' | 'error' | ''>('');
-
-  const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -216,7 +207,6 @@ const Contact: React.FC = () => {
                   placeholder="Your full name"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
               </div>
 
               <div>
@@ -230,7 +220,6 @@ const Contact: React.FC = () => {
                   placeholder="your.email@example.com"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
 
               <div>
@@ -244,7 +233,6 @@ const Contact: React.FC = () => {
                   placeholder="Your company name"
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10"
                 />
-                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
@@ -264,7 +252,6 @@ const Contact: React.FC = () => {
                   <option value="consulting">Consulting</option>
                   <option value="other">Other</option>
                 </select>
-                {errors.subject && <p className="text-red-500 text-sm mt-1">{errors.subject}</p>}
               </div>
 
               <div>
@@ -278,7 +265,6 @@ const Contact: React.FC = () => {
                   placeholder="Tell us about your project..."
                   className="w-full p-4 border-2 border-gray-200 rounded-lg text-base transition-all duration-300 focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 resize-vertical min-h-[120px]"
                 />
-                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
               </div>
 
               <button
