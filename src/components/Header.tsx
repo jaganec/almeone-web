@@ -15,10 +15,25 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white shadow-lg fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div className="max-w-6xl mx-auto px-5">
-        <div className="flex justify-between items-center py-4">
-          <Link to="/" className="text-gold text-3xl font-bold tracking-wide">
-            <h2>ALMEONE</h2>
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="flex justify-between items-center py-3 sm:py-4">
+          <Link to="/" className="flex items-center">
+            {/* AlmeOne Logo - Clean and Large */}
+            <img 
+              src="/logos/logo-horizontal-gold-black.png" 
+              alt="AlmeOne - علمة" 
+              className="h-12 sm:h-16 md:h-20 w-auto max-w-[200px] sm:max-w-[260px] md:max-w-[320px]"
+              onError={(e) => {
+                // Fallback to text if logo fails to load
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                if (fallback) fallback.classList.remove('hidden');
+              }}
+            />
+            
+            <span className="text-gold text-xl sm:text-2xl md:text-3xl font-bold tracking-wide hidden ml-4">
+              ALMEONE
+            </span>
           </Link>
           
           <nav className={`${isMenuOpen 
@@ -84,15 +99,15 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <Link 
               to="/contact" 
-              className="hidden md:inline-block bg-gold text-black px-6 py-3 rounded-md font-bold hover:bg-gold-dark transition-all duration-300 transform hover:-translate-y-0.5"
+              className="hidden sm:inline-block bg-gold text-black px-4 sm:px-6 py-2 sm:py-3 rounded-md font-bold hover:bg-gold-dark transition-all duration-300 transform hover:-translate-y-0.5 text-sm sm:text-base"
             >
               Get Quote
             </Link>
             <button 
-              className="flex md:hidden flex-col p-1 cursor-pointer"
+              className="flex md:hidden flex-col p-2 cursor-pointer rounded-md hover:bg-gray-100 transition-colors duration-200 active:bg-gray-200"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >

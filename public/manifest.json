@@ -1,20 +1,30 @@
 {
-  "short_name": "Almeone",
-  "name": "Almeone - Web & Mobile App Development",
+  "short_name": "AlmeOne",
+  "name": "AlmeOne - AI-Driven Solutions & Warehouse Automation",
+  "description": "Qatar-based technology partner specializing in AI-driven solutions, warehouse automation, and digital transformation.",
   "icons": [
     {
-      "src": "favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "logos/logo-vertical-gold-black.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "logos/logo-vertical-gold-black.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logos/favicon-gold-black.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#ECAF26",
-  "background_color": "#000000"
+  "background_color": "#000000",
+  "categories": ["business", "technology", "productivity"]
 }

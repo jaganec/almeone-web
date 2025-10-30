@@ -100,7 +100,8 @@ const ContactPage: React.FC = () => {
                 postal: 'Doha, Qatar',
                 phone: '+974 4000 1234',
                 email: 'doha@almeone.com',
-                flag: '��',
+                flag: '�',
+                flagAlt: 'QAT',
                 isHQ: true
               },
               {
@@ -110,7 +111,8 @@ const ContactPage: React.FC = () => {
                 postal: 'Dubai, UAE',
                 phone: '+971 4 123 4567',
                 email: 'mena@almeone.com',
-                flag: '��',
+                flag: '�',
+                flagAlt: 'UAE',
                 isHQ: false
               },
               {
@@ -120,13 +122,16 @@ const ContactPage: React.FC = () => {
                 postal: 'USA, Europe, Asia-Pacific',
                 phone: '+974 4000 1234',
                 email: 'global@almeone.com',
-                flag: '�',
+                flag: '🌍',
+                flagAlt: 'GLOBAL',
                 isHQ: false
               }
             ].map((office, index) => (
               <div key={index} className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${office.isHQ ? 'ring-2 ring-gold ring-opacity-50' : ''}`}>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-3xl">{office.flag}</span>
+                  <span className="text-4xl" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif'}}>
+                    {office.city === 'Doha' ? '🇶🇦' : office.city === 'Dubai' ? '🇦🇪' : '🌍'}
+                  </span>
                   <div>
                     <h3 className="text-2xl font-bold text-black flex items-center gap-2">
                       {office.city}
