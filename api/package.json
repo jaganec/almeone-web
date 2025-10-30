@@ -1,26 +1,18 @@
 {
   "name": "almeone-api",
   "version": "1.0.0",
-  "description": "AlmeOne Azure Functions API for contact form and health monitoring",
-  "main": "src/functions/*.js",
+  "description": "AlmeOne Azure Functions API",
+  "main": "index.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18"
   },
   "scripts": {
-    "start": "func start",
-    "test": "echo \"No tests specified\"",
-    "prestart": "npm install"
+    "start": "func start"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0"
   },
   "devDependencies": {
     "azure-functions-core-tools": "^4.0.0"
-  },
-  "keywords": [
-    "azure-functions",
-    "nodejs",
-    "api",
-    "almeone"
-  ]
+  }
 }
