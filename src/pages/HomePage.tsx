@@ -53,27 +53,27 @@ const HomePage: React.FC = () => {
       <HeroCarousel />
       
       {/* Company Introduction Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-5">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-black">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-black leading-tight">
               From Vision to Execution — One Partner, One <span className="text-gold">AlmeOne</span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 sm:px-0">
               AlmeOne is a trusted technology and innovation partner based in Qatar, with a global reach spanning the US, 
               Canada, and India. From digital infrastructure to strategic IT services, we specialize in AI-driven solutions, 
               digital transformation and warehouse automation helping businesses scale smarter, faster and more securely.
             </p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
               Built on the principle of unity, AlmeOne delivers precision-engineered outcomes that empower organizations to 
               adapt, evolve, and lead. Whether you're launching platforms, optimizing operations, or transforming legacy systems, 
               we bring clarity, capability and cultural fluency to every solution.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {/* AI-Driven Innovation */}
-            <div className="text-center p-8 bg-gradient-to-br from-gold/5 to-gold/10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-gold/5 to-gold/10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="w-16 h-16 bg-gold rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />

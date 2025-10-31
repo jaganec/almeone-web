@@ -79,4 +79,19 @@
     animation: loadingBar 1.2s infinite ease-in-out;
     transform-origin: bottom;
   }
+
+  /* ReCaptcha Styling */
+  .grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Mobile document fix */
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden;
+      position: relative;
+    }
+  }
 }
