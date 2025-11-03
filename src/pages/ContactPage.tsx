@@ -30,8 +30,8 @@ const ContactPage: React.FC = () => {
                   addressLocality: 'Doha',
                   addressCountry: 'QA'
                 },
-                telephone: '+974 4000 1234',
-                email: 'doha@almeone.com'
+                telephone: '+974 33920094',
+                email: 'info@almeone.com'
               },
               {
                 '@type': 'Place',
@@ -40,8 +40,8 @@ const ContactPage: React.FC = () => {
                   '@type': 'PostalAddress',
                   addressCountry: 'AE'
                 },
-                telephone: '+971 4 123 4567',
-                email: 'mena@almeone.com'
+                telephone: '+974 33920094',
+                email: 'info@almeone.com'
               }
             ],
             areaServed: ['QA', 'AE', 'SA', 'KW', 'BH', 'OM', 'US', 'GB', 'DE'],
@@ -98,8 +98,8 @@ const ContactPage: React.FC = () => {
                 country: 'Qatar (Headquarters)',
                 address: 'West Bay Business District',
                 postal: 'Doha, Qatar',
-                phone: '+974 4000 1234',
-                email: 'doha@almeone.com',
+                phone: '+974 33920094',
+                email: 'info@almeone.com',
                 flag: '�',
                 flagAlt: 'QAT',
                 isHQ: true
@@ -109,8 +109,8 @@ const ContactPage: React.FC = () => {
                 country: 'UAE (Regional Hub)',
                 address: 'Business Bay Technology Center',
                 postal: 'Dubai, UAE',
-                phone: '+971 4 123 4567',
-                email: 'mena@almeone.com',
+                phone: '+974 33920094',
+                email: 'info@almeone.com',
                 flag: '�',
                 flagAlt: 'UAE',
                 isHQ: false
@@ -120,8 +120,8 @@ const ContactPage: React.FC = () => {
                 country: 'International Projects',
                 address: 'Remote Delivery Worldwide',
                 postal: 'USA, Europe, Asia-Pacific',
-                phone: '+974 4000 1234',
-                email: 'global@almeone.com',
+                phone: '+974 33920094',
+                email: 'info@almeone.com',
                 flag: '🌍',
                 flagAlt: 'GLOBAL',
                 isHQ: false
@@ -247,7 +247,7 @@ const ContactPage: React.FC = () => {
               Schedule Consultation
             </a>
             <a 
-              href="tel:+974-4000-1234" 
+              href="tel:+974-33920094" 
               className="inline-block border-2 border-gold text-gold hover:bg-gold hover:text-black px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300"
             >
               Call Qatar Office
