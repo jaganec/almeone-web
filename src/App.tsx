@@ -11,19 +11,41 @@ import WarehousePage from './pages/WarehousePage';
 import LoadingDemoPage from './pages/LoadingDemoPage';
 import { LoadingProvider } from './contexts/LoadingContext';
 
-// Suppress known safe warnings from dependencies
+// Suppress React strict mode warnings for third-party libraries
 const originalWarn = console.warn;
+const originalError = console.error;
+
 console.warn = (...args) => {
   const message = args[0];
   if (
-    typeof message === 'string' && 
-    message.includes('UNSAFE_componentWillMount') &&
-    message.includes('strict mode')
+    typeof message === 'string' && (
+      (message.includes('UNSAFE_componentWillMount') && message.includes('strict mode')) ||
+      message.includes('Using UNSAFE_componentWillMount in strict mode is not recommended') ||
+      message.includes('SideEffect(NullComponent)') ||
+      message.includes('unsafe-component-lifecycles') ||
+      message.includes('componentWillMount has been renamed') ||
+      message.includes('Please update the following components')
+    )
   ) {
-    // Suppress ReCaptcha strict mode warnings - known safe dependency warning
+    // Suppress ReCaptcha and other third-party library strict mode warnings
     return;
   }
   originalWarn.apply(console, args);
+};
+
+// Also suppress from console.error for hook.js warnings
+console.error = (...args) => {
+  const message = args[0];
+  if (
+    typeof message === 'string' && (
+      message.includes('Using UNSAFE_componentWillMount in strict mode') ||
+      message.includes('SideEffect(NullComponent)')
+    )
+  ) {
+    // Suppress strict mode errors from third-party libraries
+    return;
+  }
+  originalError.apply(console, args);
 };
 
 // Component to handle scroll to top on route change

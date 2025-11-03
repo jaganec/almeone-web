@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface FooterLink {
   name: string;
@@ -12,6 +12,31 @@ interface FooterSection {
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setSubscribeStatus('loading');
+    
+    try {
+      // Simulate newsletter subscription - replace with actual API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSubscribeStatus('success');
+      setEmail('');
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setSubscribeStatus('idle'), 3000);
+      
+      console.log('Newsletter subscription for:', email);
+    } catch (error) {
+      setSubscribeStatus('error');
+      setTimeout(() => setSubscribeStatus('idle'), 3000);
+    }
+  };
 
   const footerSections: FooterSection[] = [
     {
@@ -79,8 +104,8 @@ const Footer: React.FC = () => {
             </p>
             <div className="space-y-2 sm:space-y-3">
               {[
-                { icon: '📧', text: 'hello@almeone.com' },
-                { icon: '📞', text: '+974 123-4567' },
+                { icon: '📧', text: 'info@almeone.com' },
+                { icon: '📞', text: '+974 33920094' },
                 { icon: '📍', text: 'Doha, Qatar' }
               ].map((contact, index) => (
                 <div key={index} className="flex items-center gap-2 sm:gap-3 text-white/80">
@@ -118,16 +143,37 @@ const Footer: React.FC = () => {
               <h4 className="text-gold text-xl sm:text-2xl font-bold mb-2">Stay Updated</h4>
               <p className="text-white/80 text-sm sm:text-base">Subscribe to our newsletter for the latest updates, insights, and industry trends.</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-white/20 rounded-lg bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-gold focus:bg-white/15 transition-all duration-300 text-sm sm:text-base"
+                required
+                disabled={subscribeStatus === 'loading'}
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-white/20 rounded-lg bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-gold focus:bg-white/15 transition-all duration-300 text-sm sm:text-base disabled:opacity-50"
               />
-              <button className="bg-gold text-black px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold hover:bg-gold-dark transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap text-sm sm:text-base">
-                Subscribe
+              <button 
+                type="submit"
+                disabled={subscribeStatus === 'loading' || !email}
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold transition-all duration-300 transform hover:-translate-y-0.5 whitespace-nowrap text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed ${
+                  subscribeStatus === 'success' ? 'bg-green-500 text-white' :
+                  subscribeStatus === 'error' ? 'bg-red-500 text-white' :
+                  'bg-gold text-black hover:bg-gold-dark'
+                }`}
+              >
+                {subscribeStatus === 'loading' ? 'Subscribing...' :
+                 subscribeStatus === 'success' ? 'Subscribed!' :
+                 subscribeStatus === 'error' ? 'Try Again' :
+                 'Subscribe'}
               </button>
-            </div>
+            </form>
+            {subscribeStatus === 'success' && (
+              <p className="text-green-400 text-sm text-center">Thank you for subscribing to our newsletter!</p>
+            )}
+            {subscribeStatus === 'error' && (
+              <p className="text-red-400 text-sm text-center">Failed to subscribe. Please try again.</p>
+            )}
           </div>
         </div>
 

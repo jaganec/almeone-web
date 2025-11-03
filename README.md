@@ -1,10 +1,36 @@
-# Getting Started with Create React App
+# AlmeOne Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Official website for AlmeOne - AI-driven solutions and warehouse automation from Qatar.
+
+## 🚀 Quick Start
+
+### Development with API
+
+**Option 1: Full Development (Recommended)**
+```bash
+npm install
+npm run dev:full
+```
+
+**Option 2: Manual Setup**
+```bash
+# Terminal 1: Start API server
+npm run dev:api
+
+# Terminal 2: Start React app  
+npm start
+```
+
+This starts both the React app (port 3000) and development API server (port 7071).
+
+### React App Only
+
+```bash
+npm install
+npm start
+```
 
 ## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
@@ -45,11 +71,46 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## 📧 API Configuration
+
+### Development API
+The development server (`dev-server.js`) provides a mock API for testing contact forms locally.
+
+### Production API (Azure Functions)
+1. **Install API dependencies:**
+   ```bash
+   cd api
+   npm install
+   ```
+
+2. **Configure environment variables:**
+   ```bash
+   cp api/.env.example api/.env
+   # Edit .env with your SMTP and reCAPTCHA credentials
+   ```
+
+3. **Deploy to Azure:**
+   - Set environment variables in Azure Function App settings
+   - Deploy the `/api` folder as an Azure Functions app
+
+### Environment Variables
+- `SMTP_HOST` - Email server host (e.g., smtp.gmail.com)
+- `SMTP_USER` - Email username
+- `SMTP_PASS` - Email password or app password
+- `RECAPTCHA_SECRET_KEY` - Google reCAPTCHA secret key
+
+## 🎯 Features
+
+- ✅ **Mobile-responsive design** with Tailwind CSS
+- ✅ **AI-powered carousel** with floating logo animations
+- ✅ **Professional contact forms** with validation
+- ✅ **Email notifications** via Azure Functions
+- ✅ **Google reCAPTCHA v3** integration
+- ✅ **SEO optimized** with structured data
+- ✅ **Multi-language support** (Arabic etymology)
+- ✅ **Qatar-based branding** with global reach
+
 ### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
