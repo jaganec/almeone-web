@@ -29,8 +29,8 @@ const createTransporter = () => {
             port: 587,
             secure: false,
             auth: {
-                user: process.env.SMTP_USER || 'muralim2311@gmail.com',
-                pass: process.env.SMTP_PASS || 'Murali@3355'
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS
             },
             tls: {
                 rejectUnauthorized: false
