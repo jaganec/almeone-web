@@ -18,11 +18,17 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
         <div className="flex justify-between items-center py-3 sm:py-4">
           <Link to="/" className="flex items-center">
-            {/* AlmeOne Logo - Clean and Large */}
+            {/* AlmeOne Logo - Original Pixel Dimensions */}
             <img 
               src="/logos/logo-horizontal-gold-black.png" 
               alt="AlmeOne - علمة" 
-              className="h-12 sm:h-16 md:h-20 w-auto max-w-[200px] sm:max-w-[260px] md:max-w-[320px]"
+              className="w-auto h-auto"
+              style={{ 
+                height: 'auto', 
+                width: 'auto',
+                maxHeight: '80px',
+                minHeight: '60px'
+              }}
               onError={(e) => {
                 // Fallback to text if logo fails to load
                 e.currentTarget.style.display = 'none';
