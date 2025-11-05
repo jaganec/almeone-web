@@ -53,15 +53,26 @@ module.exports = async function (context, req) {
             return;
         }
 
-        // Check SMTP configuration
+        // Check SMTP configuration with detailed logging
+        context.log('Environment variables check:', {
+            SMTP_USER: process.env.SMTP_USER ? 'SET' : 'NOT SET',
+            SMTP_PASS: process.env.SMTP_PASS ? 'SET' : 'NOT SET',
+            NOTIFICATION_EMAIL: process.env.NOTIFICATION_EMAIL ? 'SET' : 'NOT SET',
+            NODE_ENV: process.env.NODE_ENV
+        });
+        
         if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-            context.log.error('SMTP configuration missing');
+            context.log.error('SMTP configuration missing - Environment variables not available');
             context.res = {
                 status: 500,
                 headers: headers,
                 body: {
                     success: false,
-                    message: 'Email service not configured properly'
+                    message: 'Email service not configured properly. Environment variables missing.',
+                    debug: {
+                        smtpUser: process.env.SMTP_USER ? 'available' : 'missing',
+                        smtpPass: process.env.SMTP_PASS ? 'available' : 'missing'
+                    }
                 }
             };
             return;
@@ -248,7 +259,7 @@ module.exports = async function (context, req) {
                 headers: headers,
                 body: {
                     success: false,
-                    message: 'Your message was received but there was an issue sending the confirmation email. We will still respond to your inquiry.',
+                    message: emailError,
                     referenceId: referenceId
                 }
             };
