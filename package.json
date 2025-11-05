@@ -20,10 +20,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "build:prod": "REACT_APP_ENV=production craco build",
-    "test": "craco test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:prod": "REACT_APP_ENV=production react-scripts build",
+    "test": "react-scripts test",
     "test:ci": "craco test --coverage --watchAll=false --testResultsProcessor=jest-sonar-reporter",
     "lint": "eslint src --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .ts,.tsx --fix",
