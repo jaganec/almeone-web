@@ -8,7 +8,6 @@ import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import WarehousePage from './pages/WarehousePage';
-import LoadingDemoPage from './pages/LoadingDemoPage';
 import { LoadingProvider } from './contexts/LoadingContext';
 
 // Suppress React strict mode warnings for third-party libraries
@@ -80,7 +79,6 @@ const App: React.FC = () => {
               <Route path="/warehouse" element={<WarehousePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="/loading-demo" element={<LoadingDemoPage />} />
             </Routes>
           </main>
           <Footer />
