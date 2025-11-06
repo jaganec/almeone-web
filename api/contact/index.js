@@ -4,11 +4,23 @@ module.exports = async function (context, req) {
     context.log('Contact form submission received');
 
     try {
-        // CORS headers
+        // CORS headers - Allow both local dev and production domains
+        const allowedOrigins = [
+            'https://www.almeone.com',
+            'https://almeone.com',
+            'https://black-meadow-0ecece200.2.azurestaticapps.net',
+            'http://localhost:3000',
+            'http://localhost:7071'
+        ];
+        
+        const origin = req.headers.origin;
+        const allowOrigin = allowedOrigins.includes(origin) ? origin : 'https://www.almeone.com';
+        
         const headers = {
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Origin': allowOrigin,
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+            'Access-Control-Max-Age': '86400',
             'Content-Type': 'application/json'
         };
 
@@ -16,7 +28,8 @@ module.exports = async function (context, req) {
         if (req.method === 'OPTIONS') {
             context.res = {
                 status: 200,
-                headers: headers
+                headers: headers,
+                body: 'OK'
             };
             return;
         }
