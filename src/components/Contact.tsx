@@ -86,11 +86,8 @@ const ContactForm: React.FC = () => {
         }
       }
 
-      // Submit to API - prioritize production relative URL to avoid CORS
-      // Submit to API - ALWAYS use relative URL in production
-      const apiUrl = process.env.NODE_ENV === 'production' 
-        ? '/api/contact'  // Always use relative URL in production to avoid CORS
-        : 'http://localhost:3001/api/contact'; // Development fallback
+      // Submit to API - Force relative URL to avoid CORS issues
+      const apiUrl = '/api/contact'; // Always use relative URL for same-origin requests
 
       const response = await fetch(apiUrl, {
         method: 'POST',

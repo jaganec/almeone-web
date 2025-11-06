@@ -8,7 +8,7 @@ module.exports = async function (context, req) {
         const allowedOrigins = [
             'https://www.almeone.com',
             'https://almeone.com',
-            'https://black-meadow-0ecece200.2.azurestaticapps.net',
+            'https://black-meadow-0ecece200.3.azurestaticapps.net',
             'http://localhost:3000',
             'http://localhost:7071'
         ];
