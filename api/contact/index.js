@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-// Production-ready configuration
+// Production-ready configuration with Azure Functions compatibility
 const CONFIG = {
     MAX_MESSAGE_LENGTH: 5000,
     MAX_SUBJECT_LENGTH: 200,
@@ -10,7 +10,7 @@ const CONFIG = {
     RATE_LIMIT_MAX_REQUESTS: 5,
     EMAIL_TIMEOUT: 30000, // 30 seconds
     ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['*'],
-    ENVIRONMENT: process.env.NODE_ENV || 'development'
+    ENVIRONMENT: process.env.NODE_ENV || process.env.AZURE_FUNCTIONS_ENVIRONMENT || 'development'
 };
 
 // In-memory rate limiting (use Redis for production scaling)
@@ -52,8 +52,11 @@ function checkRateLimit(clientIp) {
 }
 
 function getClientIP(req) {
+    // Azure Functions provides IP in different headers
     return req.headers['x-forwarded-for'] || 
            req.headers['x-real-ip'] || 
+           req.headers['x-azure-clientip'] ||
+           req.headers['x-client-ip'] ||
            req.connection?.remoteAddress || 
            req.socket?.remoteAddress || 
            'unknown';
@@ -68,25 +71,45 @@ function isValidOrigin(origin) {
 }
 
 module.exports = async function (context, req) {
-    const startTime = Date.now();
-    const clientIP = getClientIP(req);
-    const origin = req.headers.origin;
-    const userAgent = req.headers['user-agent'] || 'unknown';
-    const requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+    // Initialize basic error handling for Azure Functions
+    let startTime, requestId, headers;
     
-    context.log('📧 Contact form submission received', {
-        requestId,
-        clientIP,
-        origin,
-        userAgent: userAgent.substring(0, 100),
-        method: req.method,
-        timestamp: new Date().toISOString()
-    });
+    try {
+        startTime = Date.now();
+        const clientIP = getClientIP(req);
+        const origin = req.headers.origin;
+        const userAgent = req.headers['user-agent'] || 'unknown';
+        requestId = `req_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+        
+        // Basic security headers for Azure Functions
+        const corsOrigin = isValidOrigin(origin) ? origin : CONFIG.ALLOWED_ORIGINS[0];
+        headers = {
+            'Access-Control-Allow-Origin': corsOrigin === '*' ? '*' : corsOrigin,
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+            'Access-Control-Max-Age': '86400',
+            'Content-Type': 'application/json',
+            'X-Content-Type-Options': 'nosniff',
+            'X-Frame-Options': 'DENY',
+            'X-XSS-Protection': '1; mode=block',
+            'Referrer-Policy': 'strict-origin-when-cross-origin',
+            'X-Request-ID': requestId
+        };
+        
+        context.log('📧 Contact form submission received', {
+            requestId,
+            clientIP,
+            origin,
+            userAgent: userAgent.substring(0, 100),
+            method: req.method,
+            timestamp: new Date().toISOString(),
+            azureInvocationId: context.invocationId
+        });
 
     try {
         // Security headers with dynamic origin handling
         const corsOrigin = isValidOrigin(origin) ? origin : CONFIG.ALLOWED_ORIGINS[0];
-        const headers = {
+        headers = {
             'Access-Control-Allow-Origin': corsOrigin === '*' ? '*' : corsOrigin,
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
             'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
@@ -400,7 +423,7 @@ module.exports = async function (context, req) {
                 subject: `Thank you for contacting AlmeOne - Ref: ${referenceId}`,
                 body: {
                     contentType: 'HTML',
-                    content: `<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;line-height:1.6;color:#333;max-width:600px;margin:0 auto}.header{background:linear-gradient(135deg,#ECAF26,#B8860B);padding:30px 20px;color:white;text-align:center}.content{padding:30px 20px;background:#f8f9fa}.footer{padding:20px;text-align:center;background:#343a40;color:white}</style></head><body><div class="header"><h1>✅ Thank You for Contacting AlmeOne</h1><p>Your inquiry has been received</p></div><div class="content"><p>Dear ${name},</p><p>Thank you for reaching out to <strong>AlmeOne</strong>. We have successfully received your inquiry and our team will review it promptly.</p><p><strong>Your Reference ID:</strong> ${referenceId}</p><p><strong>Next Steps:</strong></p><ul><li>Our team will review your inquiry within 24 hours</li><li>You will receive a personalized response from our experts</li><li>For urgent matters, please call us at +974 33920094</li></ul><p>We appreciate your interest in our AI-driven solutions and digital transformation services.</p><p>Best regards,<br><strong>The AlmeOne Team</strong></p></div><div class="footer"><p><strong>AlmeOne - Unified Intelligence for a Digital World</strong></p><p>�� Qatar: +974 33920094 | 🌐 info@almeone.com</p></div></body></html>`
+                    content: `<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;line-height:1.6;color:#333;max-width:600px;margin:0 auto}.header{background:linear-gradient(135deg,#ECAF26,#B8860B);padding:30px 20px;color:white;text-align:center}.content{padding:30px 20px;background:#f8f9fa}.footer{padding:20px;text-align:center;background:#343a40;color:white}</style></head><body><div class="header"><h1>✅ Thank You for Contacting AlmeOne</h1><p>Your inquiry has been received</p></div><div class="content"><p>Dear ${formData.name},</p><p>Thank you for reaching out to <strong>AlmeOne</strong>. We have successfully received your inquiry and our team will review it promptly.</p><p><strong>Your Reference ID:</strong> ${referenceId}</p><p><strong>Next Steps:</strong></p><ul><li>Our team will review your inquiry within 24 hours</li><li>You will receive a personalized response from our experts</li><li>For urgent matters, please call us at +974 33920094</li></ul><p>We appreciate your interest in our AI-driven solutions and digital transformation services.</p><p>Best regards,<br><strong>The AlmeOne Team</strong></p></div><div class="footer"><p><strong>AlmeOne - Unified Intelligence for a Digital World</strong></p><p>�� Qatar: +974 33920094 | 🌐 info@almeone.com</p></div></body></html>`
                 },
                 toRecipients: [{
                     emailAddress: {
@@ -553,6 +576,42 @@ module.exports = async function (context, req) {
                     debug: {
                         error: error.message,
                         requestId: requestId
+                    }
+                })
+            }
+        };
+    }
+    
+    } catch (criticalError) {
+        // Handle any critical errors that weren't caught by inner try-catch
+        const duration = startTime ? Date.now() - startTime : 0;
+        const errorId = requestId || `err_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+        
+        context.log('🚨 Critical function error', {
+            requestId: errorId,
+            error: criticalError.message,
+            stack: CONFIG.ENVIRONMENT === 'development' ? criticalError.stack : undefined,
+            duration: `${duration}ms`,
+            azureInvocationId: context.invocationId
+        });
+        
+        // Ensure we always return a proper response structure for Azure Functions
+        context.res = {
+            status: 500,
+            headers: headers || {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'X-Request-ID': errorId
+            },
+            body: {
+                success: false,
+                message: 'A critical error occurred while processing your request. Please try again later or contact us directly.',
+                timestamp: new Date().toISOString(),
+                requestId: errorId,
+                ...(CONFIG.ENVIRONMENT === 'development' && {
+                    debug: {
+                        error: criticalError.message,
+                        type: 'critical_function_error'
                     }
                 })
             }
