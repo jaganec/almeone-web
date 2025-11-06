@@ -91,12 +91,17 @@ module.exports = async function (context, req) {
             return;
         }
 
-        // Create email transporter
+        // Create email transporter for Microsoft/Outlook
         const transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp-mail.outlook.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS
+            },
+            tls: {
+                ciphers: 'SSLv3'
             }
         });
 
