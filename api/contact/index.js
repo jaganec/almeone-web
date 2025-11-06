@@ -289,7 +289,7 @@ module.exports = async function (context, req) {
             },
             body: {
                 success: false,
-                message: 'An error occurred while processing your request. Please try again.'
+                message: error
             }
         };
     }
