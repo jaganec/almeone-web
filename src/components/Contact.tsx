@@ -90,9 +90,9 @@ const ContactForm: React.FC = () => {
       const apiUrl = process.env.REACT_APP_API_BASE_URL 
         ? `${process.env.REACT_APP_API_BASE_URL}/api/contact`
         : process.env.NODE_ENV === 'production' 
-          ? '/api/contact' 
-          : 'http://localhost:7071/api/contact';
-      
+          ? '/api/contact'
+          : 'http://localhost:3001/api/contact';
+          
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
