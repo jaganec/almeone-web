@@ -92,7 +92,7 @@ module.exports = async function (context, req) {
         }
 
         // Create email transporter
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.SMTP_USER,
@@ -289,7 +289,7 @@ module.exports = async function (context, req) {
             },
             body: {
                 success: false,
-                message: error
+                message: error.message || 'An unexpected error occurred while processing your request'
             }
         };
     }
