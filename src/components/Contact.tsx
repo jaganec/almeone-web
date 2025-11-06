@@ -86,13 +86,14 @@ const ContactForm: React.FC = () => {
         }
       }
 
-      // Submit to API with enhanced production configuration
-      const apiUrl = process.env.REACT_APP_API_BASE_URL 
-        ? `${process.env.REACT_APP_API_BASE_URL}/api/contact`
-        : process.env.NODE_ENV === 'production' 
-          ? '/api/contact'
+      // Submit to API - prioritize production relative URL to avoid CORS
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? '/api/contact'  // Always use relative URL in production
+        : process.env.REACT_APP_API_BASE_URL 
+          ? `${process.env.REACT_APP_API_BASE_URL}/api/contact`
           : 'http://localhost:3001/api/contact';
-          
+
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
