@@ -116,21 +116,21 @@ const ContactPage: React.FC = () => {
                 isHQ: false
               },
               {
-                city: 'Global',
-                country: 'International Projects',
-                address: 'Remote Delivery Worldwide',
-                postal: 'USA, Europe, Asia-Pacific',
-                phone: '+974 33920094',
+                city: 'USA',
+                country: 'North America',
+                address: '2150 S Central Expy STE 200',
+                postal: 'McKinney, TX 75070, USA',
+                phone: '+1 (945) 249-7292',
                 email: 'info@almeone.com',
-                flag: '🌍',
-                flagAlt: 'GLOBAL',
+                flag: '🇺�',
+                flagAlt: 'USA',
                 isHQ: false
               }
             ].map((office, index) => (
               <div key={index} className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${office.isHQ ? 'ring-2 ring-gold ring-opacity-50' : ''}`}>
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-4xl" style={{fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif'}}>
-                    {office.city === 'Doha' ? '🇶🇦' : office.city === 'Dubai' ? '🇦🇪' : '🌍'}
+                    {office.city === 'Doha' ? '🇶🇦' : office.city === 'Dubai' ? '🇦🇪' : office.city === 'USA' ? '🇺🇸' : '🌍'}
                   </span>
                   <div>
                     <h3 className="text-2xl font-bold text-black flex items-center gap-2">
