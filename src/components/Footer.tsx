@@ -205,7 +205,7 @@ const Footer: React.FC = () => {
         {/* Footer Bottom - Mobile Responsive */}
         <div className="py-6 sm:py-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-white/60 text-xs sm:text-sm">
-            <p className="text-center sm:text-left">&copy; {currentYear} Almeone. All rights reserved.</p>
+            <p className="text-center sm:text-left">&copy; {currentYear} Almeone. Powered by <a href="https://sradhatech.com" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-gold/80 font-semibold transition-colors">Sradhatech</a>.</p>
             <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 lg:gap-8">
               {[
                 { name: 'Privacy Policy', url: '/privacy' },

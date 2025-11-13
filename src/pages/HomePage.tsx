@@ -71,6 +71,45 @@ const HomePage: React.FC = () => {
             </p>
           </div>
 
+          {/* Strategic Partnership Section */}
+          <div className="mb-12 sm:mb-16 bg-gradient-to-br from-gold/5 via-white to-gold/10 p-8 sm:p-12 rounded-3xl shadow-lg border border-gold/20">
+            <div className="max-w-5xl mx-auto">
+              <div className="flex items-center justify-center gap-4 mb-8">
+                <div className="text-3xl font-bold text-gold">AlmeOne</div>
+                <div className="text-2xl text-gray-400">×</div>
+                <div className="text-3xl font-bold text-black">Sradha Technologies</div>
+              </div>
+              
+              <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-black">
+                Strategic Partnership for <span className="text-gold">Transformative Growth</span>
+              </h3>
+              
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6 text-center">
+                AlmeOne operates as a <span className="font-semibold text-gold">strategic partner entity</span> to 
+                Sradha Technologies, a globally recognized leader in AI-driven applications, cloud-native solutions 
+                and data analytics. While Sradha focuses on building future-ready digital platforms, AlmeOne 
+                complements this vision by delivering precision-fit, scalable services across technology, logistics, 
+                and managed operations.
+              </p>
+              
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed text-center">
+                Together, we share a <span className="font-semibold text-gold">unified mission</span>: to empower 
+                organizations with intelligent solutions, deep domain expertise and a commitment to operational 
+                excellence. AlmeOne brings boutique agility and multi-domain insight, while Sradha provides the 
+                backbone of cutting-edge innovation — thus creating a powerful ecosystem for transformation and growth.
+              </p>
+
+              <div className="mt-8 text-center">
+                <Link 
+                  to="/partners" 
+                  className="inline-block bg-black text-gold px-8 py-3 rounded-lg text-base font-semibold hover:bg-gray-900 transition-all duration-300 border-2 border-gold"
+                >
+                  Learn About Our Partnership →
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {/* AI-Driven Innovation */}
             <div className="text-center p-6 sm:p-8 bg-gradient-to-br from-gold/5 to-gold/10 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">

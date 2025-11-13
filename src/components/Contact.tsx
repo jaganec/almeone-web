@@ -104,10 +104,6 @@ const ContactForm: React.FC = () => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
       const result = await response.json();
 
       if (result.success) {
@@ -132,7 +128,19 @@ const ContactForm: React.FC = () => {
           });
         }
       } else {
-        throw new Error(result.message || 'Submission failed');
+        // Handle API validation errors
+        if (result.errors && Array.isArray(result.errors)) {
+          // Show specific validation errors from API
+          setSubmitType('error');
+          setSubmitMessage(
+            result.message + '\n\n' + 
+            result.errors.map((error: string) => `• ${error}`).join('\n')
+          );
+        } else {
+          // Show general error message
+          setSubmitType('error');
+          setSubmitMessage(result.message || 'Submission failed');
+        }
       }
     } catch (error) {
       console.log('Contact form submission error:', error);
@@ -373,7 +381,9 @@ const ContactForm: React.FC = () => {
                     ? 'bg-green-50 border border-green-200 text-green-800' 
                     : 'bg-red-50 border border-red-200 text-red-800'
                 }`}>
-                  {submitMessage}
+                  <div style={{ whiteSpace: 'pre-line' }}>
+                    {submitMessage}
+                  </div>
                 </div>
               )}
             </form>
