@@ -57,7 +57,7 @@ const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 text-black leading-tight">
-              From Vision to Execution — One Partner, One <span className="text-gold">AlmeOne</span>
+              From Vision to Execution - One Partner, One <span className="text-gold">AlmeOne</span>
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4 sm:px-0">
               AlmeOne is a trusted technology and innovation partner based in Qatar, with a global reach spanning the US, 
