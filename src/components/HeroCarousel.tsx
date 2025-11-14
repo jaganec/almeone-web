@@ -109,10 +109,10 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
 
   return (
     <div className="relative">
-      {/* Fixed Navigation arrows - Full screen positioning */}
+      {/* Navigation arrows - Positioned relative to carousel */}
       <button
         onClick={goToPrevious}
-        className="hidden sm:block fixed left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-50 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
+        className="hidden sm:block absolute left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
         aria-label="Previous slide"
       >
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,7 +122,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
 
       <button
         onClick={goToNext}
-        className="hidden sm:block fixed right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-50 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
+        className="hidden sm:block absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 touch-manipulation"
         aria-label="Next slide"
       >
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -266,7 +266,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
       `}</style>
       
       <div 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-18 md:pt-20"
+        className="relative min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden pt-16 sm:pt-18 md:pt-20"
         onMouseEnter={() => setIsAutoPlaying(false)}
         onMouseLeave={() => setIsAutoPlaying(true)}
       >
@@ -560,11 +560,11 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ autoPlayInterval = 5000 }) 
         {/* Statistics */}
         <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 animate-fade-in-delay-4">
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">500+</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">15+</div>
             <div className="text-gray-300 text-sm sm:text-base">Happy Clients</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">1000+</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-gold mb-1 sm:mb-2">20+</div>
             <div className="text-gray-300 text-sm sm:text-base">Projects Completed</div>
           </div>
           <div className="text-center">
