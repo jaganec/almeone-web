@@ -177,19 +177,19 @@ const AboutPage: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: 'Ismail',
+                name: 'Ahmed',
                 role: 'Chief Executive Officer',
                 description: '15+ years leading digital transformation initiatives across Fortune 500 companies.',
                 image: '👤'
               },
               {
-                name: 'raaga',
+                name: 'Raaga',
                 role: 'Chief Technology Officer',
                 description: 'Technology visionary with expertise in AI, cloud computing, and enterprise architecture.',
                 image: '👤'
               },
               {
-                name: 'praveen',
+                name: 'Praveen',
                 role: 'Head of Operations',
                 description: 'Operations excellence specialist focused on process optimization and quality delivery.',
                 image: '👤'
